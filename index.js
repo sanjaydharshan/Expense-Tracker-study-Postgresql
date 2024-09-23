@@ -1,7 +1,7 @@
 require("dotenv").config({ path: `${process.cwd()}/.env` });
 const express = require("express");
 const app = express();
-const cors = require("cors"); // Import the cors package
+const cors = require("cors");
 const port = process.env.APP_PORT || 4000;
 const expenseroute = require("./routes/expenseroutes.js");
 const userroute = require("./routes/user.js");
@@ -21,7 +21,7 @@ sequelize
   .authenticate()
   .then(() => {
     console.log("Connection to PostgreSQL has been established successfully.");
-    return usermodeldata.sync(); // This will create the table if it doesn't exist
+    return usermodeldata.sync();
   })
   .then(() => {
     app.listen(port, () => {

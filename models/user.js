@@ -10,7 +10,6 @@ const usermodeldata = sequelize.define(
       unique: false,
     },
     lastname: {
-      // Fixed typo from 'ladtname' to 'lastname'
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
@@ -26,14 +25,12 @@ const usermodeldata = sequelize.define(
     },
   },
   {
-    // Options
-    timestamps: true, // Enables createdAt and updatedAt
-    createdAt: "created_at", // Optional: rename the createdAt field
-    updatedAt: "updated_at", // Optional: rename the updatedAt field
+    timestamps: true,
+    createdAt: "created_at",
+    updatedAt: "updated_at",
   }
 );
 
-// Sync the model with the database
 usermodeldata.sync();
 
 module.exports = usermodeldata;
