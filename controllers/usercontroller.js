@@ -53,6 +53,7 @@ const createUser = async (req, res) => {
     res.status(201).json({
       status: "success",
       data: newUser,
+      user_id: newUser.id
     });
   } catch (e) {
     console.error("Error creating user:", e);

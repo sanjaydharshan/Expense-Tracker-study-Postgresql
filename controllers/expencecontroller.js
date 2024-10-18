@@ -4,7 +4,7 @@ const Expense = require("../models/expensemodel");
 
 const getExpense = async (req, res) => {
   try {
-    const expense = await Expense.findAll();
+    const expense = await Expense.findAll({where:{user_id:req.user_id}});
     res.status(200).json({
       status: "success",
       data: expense,
@@ -32,7 +32,9 @@ const getExpensebyid = async (req, res) => {
 const createExpense = async (req, res) => {
   try {
     console.log(req.body, "dfjhdskfjdshk");
-    const expense = await Expense.create(req.body);
+    const expense = await Expense.create({...req.body,user_id: req.user_id});
+
+    console.log(expense,"expense1")
     res.status(200).json({
       status: "success",
       data: expense,

@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../postgresdb");
+const usermodeldata = require("./user");
 
 const Expense = sequelize.define("Expense", {
   amount: {
@@ -49,7 +50,27 @@ const Expense = sequelize.define("Expense", {
       },
     },
   },
-});
-Expense.sync();
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true,
+  },
+  user_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  }
+},
+ {
+    timestamps: true,
+    createdAt: "created_at",
+    updatedAt: "updated_at",
+  });
+
+  // Define relationships
+usermodeldata.hasMany(Expense, { foreignKey: "user_id" });
+Expense.belongsTo(usermodeldata, { foreignKey: 'user_id' });
+
+  Expense.sync();
+
 
 module.exports = Expense;

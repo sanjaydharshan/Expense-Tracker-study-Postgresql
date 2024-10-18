@@ -16,7 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 // console.log("log 100");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-
 sequelize
   .authenticate()
   .then(() => {
@@ -31,6 +30,7 @@ sequelize
   .catch((err) => {
     console.error("Unable to connect to the database:", err);
   });
+  
 app.use("/api/", Login);
 app.use("/api/expense", verifyToken, expenseroute);
-app.use("/api/user", verifyToken, userroute);
+app.use("/api/user", userroute);

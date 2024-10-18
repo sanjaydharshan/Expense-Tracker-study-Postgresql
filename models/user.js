@@ -4,6 +4,11 @@ const sequelize = require("../postgresdb");
 const usermodeldata = sequelize.define(
   "usermodeldata",
   {
+    user_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
